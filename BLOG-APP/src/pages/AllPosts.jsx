@@ -1,7 +1,7 @@
 import React from "react";
 
 function AllPosts() {
-  return <div></div>;
+  return <div>All Post</div>;
 }
 
 export default AllPosts;

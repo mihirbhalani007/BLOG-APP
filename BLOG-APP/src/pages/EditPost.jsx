@@ -1,7 +1,7 @@
 import React from "react";
 
 function EditPost() {
-  return <div></div>;
+  return <div>Edit Post</div>;
 }
 
 export default EditPost;

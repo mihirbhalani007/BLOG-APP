@@ -1,7 +1,7 @@
 import React from "react";
 
 function AddPost() {
-  return <div></div>;
+  return <div>AddPost</div>;
 }
 
 export default AddPost;
