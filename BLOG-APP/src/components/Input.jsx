@@ -4,13 +4,13 @@ const Input = React.forwardRef(function Input(
   { label, type = "text", className = "", ...props },
   ref
 ) {
-  id = useId();
+  const id = useId();
   return (
     <div className="w-full">
       {label && (
-        <labe htmlFor={id} className="inline-block mb-1 pl-1">
+        <label htmlFor={id} className="inline-block mb-1 pl-1">
           {label}
-        </labe>
+        </label>
       )}
       <input
         type={type}
