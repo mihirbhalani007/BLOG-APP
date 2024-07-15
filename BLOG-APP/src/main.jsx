@@ -8,7 +8,7 @@ import store from "./store/store.js";
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Protected from "./components/AuthLayout.jsx";
-import SignUp from "./pages/SignUp.jsx";
+import SignUp from "./components/SignUp.jsx";
 import AllPosts from "./pages/AllPosts.jsx";
 import AddPost from "./pages/AddPost.jsx";
 import EditPost from "./pages/EditPost.jsx";
