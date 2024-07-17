@@ -3,9 +3,8 @@ import "./App.css";
 import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import authService from "./appwrite/auth";
-import { logout } from "./store/authSlice";
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
+import { logout, login } from "./store/authSlice";
+import { Header, Footer } from "./components/index";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -13,7 +12,7 @@ function App() {
 
   useEffect(() => {
     authService
-      .getCurruntUser()
+      .getCurrentUser()
       .then((userData) => {
         if (userData)
           dispatch(
@@ -33,8 +32,6 @@ function App() {
         <main>
           <Outlet />
         </main>
-      </div>
-      <div className="w-full block">
         <Footer />
       </div>
     </div>

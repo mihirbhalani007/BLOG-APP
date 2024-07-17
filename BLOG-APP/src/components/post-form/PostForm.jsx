@@ -1,9 +1,6 @@
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import Button from "../Button";
-import Input from "../Input";
-import RTE from "../RTE";
-import Select from "../Select";
+import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/config";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -76,12 +73,12 @@ export default function PostForm({}) {
       <div className="w-2/3 px-2">
         <Input
           label="Title"
-          placeholders="Title"
+          placeholder="Title"
           className="mb-4"
-          {...register(title, { required: true })}
+          {...register("title", { required: true })}
         />
         <Input
-          label="Slug :"
+          label="Slug"
           placeholder="Slug"
           className="mb-4"
           {...register("slug", { required: true })}
@@ -92,13 +89,13 @@ export default function PostForm({}) {
           }}
         />
         <RTE
-          label="Content: "
+          label="Content"
           name="content"
           control={control}
           defaultValue={getValues("content")}
         />
       </div>
-      <div className="1/3 px-2">
+      <div className="w-1/3 px-2">
         <Input
           label="Featured Image"
           type="file"
