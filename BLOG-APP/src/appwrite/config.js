@@ -1,5 +1,5 @@
-import conf from "../confs/conf";
-import { Client, Databases, Storage, Query, ID } from "appwrite";
+import conf from "../confs/conf.js";
+import { Client, ID, Databases, Storage, Query } from "appwrite";
 
 export class Service {
   client = new Client();
@@ -30,7 +30,6 @@ export class Service {
       );
     } catch (error) {
       console.log("Appwrite serive :: createPost :: error", error);
-      return false;
     }
   }
 
@@ -49,7 +48,6 @@ export class Service {
       );
     } catch (error) {
       console.log("Appwrite serive :: updatePost :: error", error);
-      return false;
     }
   }
 
@@ -92,6 +90,8 @@ export class Service {
       return false;
     }
   }
+
+  // file upload service
 
   async uploadFile(file) {
     try {
