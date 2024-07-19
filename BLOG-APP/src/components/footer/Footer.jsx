@@ -3,147 +3,134 @@ import Logo from "../Logo";
 
 function Footer() {
   return (
-    <section className="relative overflow-hidden py-10 bg-white border border-t-2 border-t-black">
-      <div className="relative z-10 mx-auto max-w-7xl px-4">
-        <div className="-m-6 flex flex-wrap">
+    <section className="py-12 bg-gray-200  text-center shadow-md">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="flex flex-wrap justify-center md:justify-between">
           {/* Column 1 */}
-          <div className="w-full p-6 md:w-1/2 lg:w-5/12">
-            <div className="flex h-full flex-col justify-between">
-              <div className="mb-4">
-                <Link to="/" className="flex items-center">
-                  <Logo width="100px" className="mr-2" />
-                  <span className="text-lg font-semibold text-gray-900">
-                    DevUI
-                  </span>
-                </Link>
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">
-                  &copy; Copyright 2023. All Rights Reserved by DevUI.
-                </p>
-              </div>
+          <div className="w-full md:w-1/2 lg:w-4/12 p-6">
+            <div className="flex flex-col items-center mb-6">
+              <Link to="/" className="flex items-center">
+                <Logo width="80px" /> {/* Adjust logo size */}
+              </Link>
+              <p className="text-sm text-gray-600 mt-4">
+                &copy; 2024 Blog-App. All Rights Reserved.
+              </p>
             </div>
           </div>
 
           {/* Column 2 */}
-          <div className="w-full p-6 md:w-1/2 lg:w-2/12">
-            <div className="h-full">
-              <h3 className="tracking-wider mb-4 text-sm font-semibold uppercase text-gray-500">
-                Company
-              </h3>
-              <ul>
-                <li className="mb-2">
-                  <Link
-                    to="/"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Features
-                  </Link>
-                </li>
-                <li className="mb-2">
-                  <Link
-                    to="/"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Pricing
-                  </Link>
-                </li>
-                <li className="mb-2">
-                  <Link
-                    to="/"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Affiliate Program
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Press Kit
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          <div className="w-full md:w-1/2 lg:w-2/12 p-6">
+            <h3 className="text-sm font-semibold uppercase text-gray-700 mb-4">
+              Company
+            </h3>
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  to="/"
+                  className="text-base font-medium text-gray-900 hover:text-blue-600 transition duration-300"
+                >
+                  Features
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-base font-medium text-gray-900 hover:text-blue-600 transition duration-300"
+                >
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-base font-medium text-gray-900 hover:text-blue-600 transition duration-300"
+                >
+                  Affiliate Program
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-base font-medium text-gray-900 hover:text-blue-600 transition duration-300"
+                >
+                  Press Kit
+                </Link>
+              </li>
+            </ul>
           </div>
 
           {/* Column 3 */}
-          <div className="w-full p-6 md:w-1/2 lg:w-2/12">
-            <div className="h-full">
-              <h3 className="tracking-wider mb-4 text-sm font-semibold uppercase text-gray-500">
-                Support
-              </h3>
-              <ul>
-                <li className="mb-2">
-                  <Link
-                    to="/"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Account
-                  </Link>
-                </li>
-                <li className="mb-2">
-                  <Link
-                    to="/"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Help
-                  </Link>
-                </li>
-                <li className="mb-2">
-                  <Link
-                    to="/"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Contact Us
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Customer Support
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          <div className="w-full md:w-1/2 lg:w-2/12 p-6">
+            <h3 className="text-sm font-semibold uppercase text-gray-700 mb-4">
+              Support
+            </h3>
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  to="/"
+                  className="text-base font-medium text-gray-900 hover:text-blue-600 transition duration-300"
+                >
+                  Account
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-base font-medium text-gray-900 hover:text-blue-600 transition duration-300"
+                >
+                  Help
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-base font-medium text-gray-900 hover:text-blue-600 transition duration-300"
+                >
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-base font-medium text-gray-900 hover:text-blue-600 transition duration-300"
+                >
+                  Customer Support
+                </Link>
+              </li>
+            </ul>
           </div>
 
           {/* Column 4 */}
-          <div className="w-full p-6 md:w-1/2 lg:w-3/12">
-            <div className="h-full">
-              <h3 className="tracking-wider mb-4 text-sm font-semibold uppercase text-gray-500">
-                Legals
-              </h3>
-              <ul>
-                <li className="mb-2">
-                  <Link
-                    to="/"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Terms &amp; Conditions
-                  </Link>
-                </li>
-                <li className="mb-2">
-                  <Link
-                    to="/"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Licensing
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          <div className="w-full md:w-1/2 lg:w-3/12 p-6">
+            <h3 className="text-sm font-semibold uppercase text-gray-700 mb-4">
+              Legals
+            </h3>
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  to="/"
+                  className="text-base font-medium text-gray-900 hover:text-blue-600 transition duration-300"
+                >
+                  Terms &amp; Conditions
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-base font-medium text-gray-900 hover:text-blue-600 transition duration-300"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-base font-medium text-gray-900 hover:text-blue-600 transition duration-300"
+                >
+                  Licensing
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

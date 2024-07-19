@@ -1,5 +1,5 @@
 function Container({ children }) {
-  return <div className="w-full mx-auto px-4">{children}</div>;
+  return <div className="max-w-screen-xl mx-auto px-4">{children}</div>;
 }
 
 export default Container;

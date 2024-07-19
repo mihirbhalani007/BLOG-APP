@@ -23,58 +23,60 @@ function Login() {
       }
     } catch (error) {
       setError(error.message);
-      console.log("login full error ",error);
+      console.log("login full error ", error);
     }
   };
 
   return (
-    <div className="flex items-center justify-center w-full">
-      <div
-        className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
-      >
-        <div className="mb-2 flex justify-center">
-          <span className="inline-block w-full max-w-[100px]">
+    <div className="flex items-center justify-center w-full py-10 bg-gray-50">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-lg border border-gray-200 p-8">
+        <div className="mb-6 flex justify-center">
+          <span className="inline-block w-24">
             <Logo width="100%" />
           </span>
         </div>
-        <h2 className="text-center text-2xl font-bold leading-tight">
+        <h2 className="text-center text-3xl font-semibold mb-2 text-gray-800">
           Sign in to your account
         </h2>
-        <p className="mt-2 text-center text-base text-black/60">
-          Don&apos;t have any account?&nbsp;
+        <p className="text-center text-base text-gray-600 mb-6">
+          Don&apos;t have an account?&nbsp;
           <Link
             to="/signup"
-            className="font-medium text-primary transition-all duration-200 hover:underline"
+            className="text-blue-500 font-medium hover:underline"
           >
             Sign Up
           </Link>
         </p>
-        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-        <form onSubmit={handleSubmit(login)} className="mt-8">
+        {error && <p className="text-red-600 mb-6 text-center">{error}</p>}
+        <form onSubmit={handleSubmit(login)}>
           <div className="space-y-5">
             <Input
-              label="Email: "
+              label="Email"
               placeholder="Enter your email"
               type="email"
+              className="bg-gray-100 border border-gray-300 rounded-md py-2 px-4 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               {...register("email", {
-                required: true,
-                validate: {
-                  matchPatern: (value) =>
-                    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                    "Email address must be a valid address",
+                required: "Email is required",
+                pattern: {
+                  value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+                  message: "Email address must be a valid address",
                 },
               })}
             />
             <Input
-              label="Password: "
+              label="Password"
               type="password"
               placeholder="Enter your password"
+              className="bg-gray-100 border border-gray-300 rounded-md py-2 px-4 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               {...register("password", {
-                required: true,
+                required: "Password is required",
               })}
             />
-            <Button type="submit" className="w-full">
-              Sign in
+            <Button
+              type="submit"
+              className="w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-blue-900 hover:text-gray-200 transition-colors duration-300"
+            >
+              Sign In
             </Button>
           </div>
         </form>
