@@ -36,21 +36,24 @@ function Header() {
   ];
 
   return (
-    <header className="py-3 shadow bg-gray-500">
+    <header className="py-1 shadow-sm bg-slate-100">
       <Container>
-        <nav className="flex">
+        <nav className="flex items-center justify-between">
           <div className="mr-4">
-            <Link to="/">
+            <Link to="/" className="flex items-center">
               <Logo width="70px" />
+              <span className="text-black text-xl font-semibold ml-4">
+                Blog-App
+              </span>
             </Link>
           </div>
-          <ul className="flex ml-auto">
+          <ul className="flex items-center space-x-4">
             {navItems.map((item) =>
               item.active ? (
                 <li key={item.name}>
                   <button
                     onClick={() => navigate(item.slug)}
-                    className="inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full"
+                    className="inline-block px-4 py-2 rounded-full text-black font-medium hover:bg-blue-600 hover:text-white transition duration-200"
                   >
                     {item.name}
                   </button>
