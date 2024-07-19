@@ -77,12 +77,15 @@ export default function PostForm({ post }) {
   }, [watch, slugTransform, setValue]);
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-      <div className="w-2/3 px-2">
+    <form
+      onSubmit={handleSubmit(submit)}
+      className="flex flex-wrap bg-gray-300 p-8 rounded-xl border border-black/10 shadow-md"
+    >
+      <div className="w-full md:w-2/3 px-2 mb-6 md:mb-0">
         <Input
           label="Title :"
           placeholder="Title"
-          className="mb-4"
+          className="mb-4 focus:ring-1 focus:ring-gray-700 focus:border-gray-700"
           {...register("title", { required: true })}
         />
         <Input
@@ -103,7 +106,7 @@ export default function PostForm({ post }) {
           defaultValue={getValues("content")}
         />
       </div>
-      <div className="w-1/3 px-2">
+      <div className="w-full md:w-1/3 px-2">
         <Input
           label="Featured Image :"
           type="file"
@@ -116,20 +119,20 @@ export default function PostForm({ post }) {
             <img
               src={appwriteService.getFilePreview(post.featuredImage)}
               alt={post.title}
-              className="rounded-lg"
+              className="w-full rounded-lg shadow-sm"
             />
           </div>
         )}
         <Select
           options={["active", "inactive"]}
           label="Status"
-          className="mb-4"
+          className="mb-4 focus:ring-1 focus:ring-gray-700 focus:border-gray-700"
           {...register("status", { required: true })}
         />
         <Button
           type="submit"
-          bgColor={post ? "bg-green-500" : undefined}
-          className="w-full"
+          bgColor={post ? "bg-blue-500" : "bg-blue-500"}
+          className="w-full text-white px-6 py-3 rounded-full shadow-lg transition-colors duration-300 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 hover:text-white"
         >
           {post ? "Update" : "Submit"}
         </Button>
