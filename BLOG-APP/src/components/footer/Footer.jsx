@@ -3,7 +3,7 @@ import Logo from "../Logo";
 
 function Footer() {
   return (
-    <section className="py-12 bg-gray-200  text-center shadow-md">
+    <section className="py-5 bg-gray-200  text-center shadow-md">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-wrap justify-center md:justify-between">
           {/* Column 1 */}

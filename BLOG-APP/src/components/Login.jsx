@@ -5,15 +5,18 @@ import { Button, Input, Logo } from "./index";
 import { useDispatch } from "react-redux";
 import authService from "../appwrite/auth";
 import { useForm } from "react-hook-form";
+import { Loader } from "./index";
 
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const login = async (data) => {
     setError("");
+    setIsLoading(true);
     try {
       const session = await authService.login(data);
       if (session) {
@@ -24,12 +27,22 @@ function Login() {
     } catch (error) {
       setError(error.message);
       console.log("login full error ", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[480px]">
+        <Loader />
+      </div>
+    );
+  }
+
   return (
     <div className="flex items-center justify-center w-full py-10 bg-gray-50">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-lg border border-gray-200 p-8">
+      <div className="w-full max-w-lg bg-white rounded-lg shadow-lg border border-gray-200 p-8 my-10">
         <div className="mb-6 flex justify-center">
           <span className="inline-block w-24">
             <Logo width="100%" />
@@ -51,10 +64,9 @@ function Login() {
         <form onSubmit={handleSubmit(login)}>
           <div className="space-y-5">
             <Input
-              label="Email"
+              label="Email: "
               placeholder="Enter your email"
               type="email"
-              className="bg-gray-100 border border-gray-300 rounded-md py-2 px-4 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -62,9 +74,10 @@ function Login() {
                   message: "Email address must be a valid address",
                 },
               })}
+              className="bg-gray-100 border border-gray-300 rounded-md py-2 px-4 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
             <Input
-              label="Password"
+              label="Password: "
               type="password"
               placeholder="Enter your password"
               className="bg-gray-100 border border-gray-300 rounded-md py-2 px-4 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"

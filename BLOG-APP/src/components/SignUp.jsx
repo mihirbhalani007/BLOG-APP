@@ -27,8 +27,8 @@ function SignUp() {
   };
 
   return (
-    <div className="flex items-center justify-center w-full bg-gray-50">
-      <div className="mx-auto w-full max-w-lg bg-white rounded-xl p-10 border border-black/10 my-10">
+    <div className="flex items-center justify-center w-full py-10 bg-gray-50">
+      <div className="mx-auto w-full max-w-lg bg-white rounded-xl border p-8 border-black/10 my-10 shadow-lg">
         <div className="mb-6 flex justify-center">
           <span className="inline-block w-24">
             <Logo width="100px" />
@@ -37,7 +37,7 @@ function SignUp() {
         <h2 className="text-center text-3xl font-semibold mb-2 text-gray-800">
           Sign up to create an account
         </h2>
-        <p className="mt-2 text-center text-base text-black/60">
+        <p className="text-center text-base text-gray-600 mb-6">
           Already have an account?&nbsp;
           <Link
             to="/login"
@@ -48,7 +48,7 @@ function SignUp() {
         </p>
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
 
-        <form onSubmit={handleSubmit(create)} className="mt-8">
+        <form onSubmit={handleSubmit(create)}>
           <div className="space-y-5">
             <Input
               label="Full Name: "
@@ -56,7 +56,7 @@ function SignUp() {
               {...register("name", {
                 required: true,
               })}
-              className="bg-white border border-gray-300 rounded-md p-2 text-gray-800"
+              className="bg-gray-100 border border-gray-300 rounded-md py-2 px-4 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
             <Input
               label="Email: "
@@ -70,7 +70,7 @@ function SignUp() {
                     "Email address must be a valid address",
                 },
               })}
-              className="bg-white border border-gray-300 rounded-md p-2 text-gray-800"
+              className="bg-gray-100 border border-gray-300 rounded-md py-2 px-4 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
             <Input
               label="Password: "
@@ -79,7 +79,7 @@ function SignUp() {
               {...register("password", {
                 required: true,
               })}
-              className="bg-white border border-gray-300 rounded-md p-2 text-gray-800"
+              className="bg-gray-100 border border-gray-300 rounded-md py-2 px-4 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
             <Button
               type="submit"

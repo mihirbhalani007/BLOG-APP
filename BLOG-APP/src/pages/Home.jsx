@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import appwriteService from "../appwrite/config";
 import { Container, PostCard } from "../components";
 import { Link } from "react-router-dom";
+import { RotatingLoader } from "../components";
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -47,12 +48,13 @@ function Home() {
   // Show no posts message if there are no posts available
   if (posts.length === 0) {
     return (
-      <div className="w-full py-16 bg-white text-center">
+      <div className="w-full bg-white text-center">
         <Container>
-          <div className="flex flex-col items-center justify-center min-h-[300px]">
+          <div className="flex flex-col items-center justify-center min-h-[480px]">
             <p className="text-xl font-medium text-gray-700 mb-8">
-              No posts available at the moment. Please check back later.
+              Loading Posts for you, Please wait
             </p>
+            <RotatingLoader />
           </div>
         </Container>
       </div>
@@ -61,7 +63,7 @@ function Home() {
 
   // Render posts if available
   return (
-    <div className="w-full py-8">
+    <div className="w-full py-8 min-h-[480px]">
       <Container>
         <div className="flex flex-wrap">
           {posts.map((post) => (

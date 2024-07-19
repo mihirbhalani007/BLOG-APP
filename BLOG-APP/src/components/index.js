@@ -11,6 +11,8 @@ import LogoutBtn from "./header/LogoutBtn";
 import Input from "./Input";
 import RTE from "./RTE";
 import Select from "./Select";
+import Loader from "./footer/Loader/Loader";
+import RotatingLoader from "./footer/Loader/RotatingLoader.jsx";
 
 export {
   Login,
@@ -26,4 +28,6 @@ export {
   Input,
   RTE,
   Select,
+  Loader,
+  RotatingLoader,
 };
