@@ -11,7 +11,6 @@ function Home() {
 
   useEffect(() => {
     if (authStatus) {
-      // Fetch posts only if the user is logged in
       appwriteService.getPosts().then((response) => {
         if (response) {
           setPosts(response.documents);
@@ -20,12 +19,11 @@ function Home() {
     }
   }, [authStatus]);
 
-  // Show login prompt if user is not logged in
   if (!authStatus) {
     return (
-      <div className="w-full py-16 bg-white text-center">
+      <div className="w-full flex-1 py-16 bg-white text-center">
         <Container>
-          <div className="flex flex-col items-center justify-center min-h-[300px]">
+          <div className="flex flex-col items-center justify-center flex-1">
             <p className="text-xl font-medium text-gray-700 mb-8">
               Please{" "}
               <Link to="/login" className="text-blue-600 hover:underline">
@@ -45,7 +43,6 @@ function Home() {
     );
   }
 
-  // Show no posts message if there are no posts available
   if (posts.length === 0) {
     return (
       <div className="w-full bg-white text-center">
@@ -61,13 +58,12 @@ function Home() {
     );
   }
 
-  // Render posts if available
   return (
-    <div className="w-full py-8 min-h-[480px]">
+    <div className="w-full py-8">
       <Container>
-        <div className="flex flex-wrap">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {posts.map((post) => (
-            <div key={post.$id} className="p-2 w-1/4">
+            <div key={post.$id}>
               <PostCard {...post} />
             </div>
           ))}

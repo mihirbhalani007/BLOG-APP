@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import "./App.css";
 import authService from "./appwrite/auth";
 import { login, logout } from "./store/authSlice";
 import { Footer, Header } from "./components";
@@ -21,17 +20,15 @@ function App() {
         }
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [dispatch]);
 
   return !loading ? (
-    <div className="min-h-screen flex flex-wrap content-between">
-      <div className="w-full block">
-        <Header />
-        <main>
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+      <Footer />
     </div>
   ) : null;
 }
