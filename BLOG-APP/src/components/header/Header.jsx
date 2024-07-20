@@ -44,7 +44,7 @@ function Header() {
 
   return (
     <header className="bg-gray-200 shadow-md">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-1">
         <div className="flex items-center justify-between py-4">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
@@ -110,7 +110,7 @@ function Header() {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className="md:hidden bg-gray-100 py-2">
+          <div className="md:hidden bg-white pt-2 w-full">
             <nav className="flex flex-col items-center space-y-2">
               {navItems.map((item) =>
                 item.active ? (
@@ -119,8 +119,8 @@ function Header() {
                     onClick={() => handleNavigation(item.slug)}
                     className={`px-3 py-2 rounded-md font-medium transition duration-200 ${
                       item.active
-                        ? "text-blue-800 bg-gray-200"
-                        : "text-black hover:bg-gray-200 hover:text-blue-800"
+                        ? "text-white bg-blue-500 hover:bg-blue-300"
+                        : "text-black bg-gray-200 hover:bg-gray-300 hover:text-blue-800"
                     }`}
                   >
                     {item.name}
