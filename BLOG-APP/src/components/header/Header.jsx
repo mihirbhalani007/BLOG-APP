@@ -1,13 +1,17 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import Logo from "../Logo";
-import LogoutBtn from "./LogoutBtn"; // Assuming LogoutBtn is a separate component
+import LogoutBtn from "./LogoutBtn";
 import { useState } from "react";
+import { setSearchTerm } from "../../store/searchSlice";
 
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
+  const searchTerm = useSelector((state) => state.search.searchTerm);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false); // State to manage mobile menu open/close
+  const location = useLocation();
+  const dispatch = useDispatch();
 
   const navItems = [
     {
@@ -39,12 +43,12 @@ function Header() {
 
   const handleNavigation = (slug) => {
     navigate(slug);
-    setMenuOpen(false); // Close the mobile menu after navigation
+    setMenuOpen(false);
   };
 
   return (
     <header className="bg-gray-200 shadow-md">
-      <div className="container mx-auto px-1">
+      <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
@@ -54,6 +58,35 @@ function Header() {
               </span>
             </Link>
           </div>
+
+          {/* Desktop Menu */}
+          <nav className="hidden md:flex items-center space-x-4">
+            {navItems.map((item) =>
+              item.active ? (
+                <button
+                  key={item.name}
+                  onClick={() => handleNavigation(item.slug)}
+                  className={`px-3 py-2 rounded-md font-medium transition duration-200 ${
+                    location.pathname === item.slug
+                      ? "text-blue-800 bg-gray-200 underline"
+                      : "text-black hover:bg-gray-200 hover:text-blue-800"
+                  }`}
+                >
+                  {item.name}
+                </button>
+              ) : null
+            )}
+            {authStatus && <LogoutBtn />}
+            {location.pathname === "/all-posts" && (
+              <input
+                type="text"
+                placeholder="Search posts..."
+                value={searchTerm}
+                onChange={(e) => dispatch(setSearchTerm(e.target.value))}
+                className="px-4 py-2 rounded-md border border-gray-300"
+              />
+            )}
+          </nav>
 
           {/* Mobile Menu Button */}
           <div className="flex md:hidden">
@@ -86,26 +119,6 @@ function Header() {
               </svg>
             </button>
           </div>
-
-          {/* Desktop Menu */}
-          <nav className="hidden md:flex items-center space-x-4">
-            {navItems.map((item) =>
-              item.active ? (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavigation(item.slug)}
-                  className={`px-3 py-2 rounded-md font-medium transition duration-200 ${
-                    item.active
-                      ? "text-blue-800 bg-gray-200"
-                      : "text-black hover:bg-gray-200 hover:text-blue-800"
-                  }`}
-                >
-                  {item.name}
-                </button>
-              ) : null
-            )}
-            {authStatus && <LogoutBtn />}
-          </nav>
         </div>
 
         {/* Mobile Menu */}
@@ -118,7 +131,7 @@ function Header() {
                     key={item.name}
                     onClick={() => handleNavigation(item.slug)}
                     className={`px-3 py-2 rounded-md font-medium transition duration-200 ${
-                      item.active
+                      location.pathname === item.slug
                         ? "text-white bg-blue-500 hover:bg-blue-300"
                         : "text-black bg-gray-200 hover:bg-gray-300 hover:text-blue-800"
                     }`}
@@ -128,6 +141,15 @@ function Header() {
                 ) : null
               )}
               {authStatus && <LogoutBtn />}
+              {location.pathname === "/all-posts" && (
+                <input
+                  type="text"
+                  placeholder="Search posts..."
+                  value={searchTerm}
+                  onChange={(e) => dispatch(setSearchTerm(e.target.value))}
+                  className="px-4 py-2 rounded-md border border-gray-300"
+                />
+              )}
             </nav>
           </div>
         )}

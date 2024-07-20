@@ -3,10 +3,12 @@ import appwriteService from "../appwrite/config";
 import Container from "../components/container/Container";
 import PostCard from "../components/PostCard";
 import { RotatingLoader } from "../components";
+import { useSelector } from "react-redux";
 
 function AllPosts() {
   const [posts, setPost] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const searchTerm = useSelector((state) => state.search.searchTerm);
 
   useEffect(() => {
     appwriteService.getPosts([]).then((posts) => {
@@ -19,6 +21,12 @@ function AllPosts() {
       }
     });
   }, []);
+
+  const filteredPosts = searchTerm
+    ? posts.filter((post) =>
+        post.title.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : posts;
 
   if (isLoading) {
     return (
@@ -37,7 +45,7 @@ function AllPosts() {
     <div className="w-full py-8">
       <Container>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {posts.map((post) => (
+          {filteredPosts.map((post) => (
             <div key={post.$id}>
               <PostCard {...post} />
             </div>
