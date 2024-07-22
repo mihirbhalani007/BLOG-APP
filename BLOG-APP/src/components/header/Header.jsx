@@ -53,9 +53,9 @@ function Header() {
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <Logo width="70px" />
+              <Logo width="175px" />
               <span className="text-black text-2xl font-semibold ml-4">
-                Blog-App
+                
               </span>
             </Link>
           </div>

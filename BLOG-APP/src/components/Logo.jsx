@@ -1,7 +1,7 @@
 function Logo({ width = "100%" }) {
   return (
     <img
-      src="https://www.blogger.com/img/logo_blogger_40px.png"
+      src="https://2.bp.blogspot.com/-I6CkaVJjm_4/WNJeqWU8_WI/AAAAAAAATaY/PB0ipPlBStc56Tp17azAx8HQ-M4FdQiuQCK4B/s1600/blogger_masthead%25403x.png"
       style={{ width }}
       alt="Blogger Logo"
       className="object-contain"
