@@ -50,6 +50,7 @@ function Header() {
     <header className="bg-gray-200 shadow-md">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
+          {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <Logo width="70px" />
@@ -57,6 +58,39 @@ function Header() {
                 Blog-App
               </span>
             </Link>
+          </div>
+
+          {/* Center Container for Nav Items and Search Bar */}
+          <div className="flex-grow flex justify-center items-center relative">
+            <nav className="hidden md:flex items-center space-x-4">
+              {navItems.map((item) =>
+                item.active ? (
+                  <button
+                    key={item.name}
+                    onClick={() => handleNavigation(item.slug)}
+                    className={`px-3 py-2 rounded-md font-medium transition duration-200 ${
+                      location.pathname === item.slug
+                        ? "text-blue-800 bg-gray-200"
+                        : "text-black hover:bg-gray-200 hover:text-blue-800"
+                    }`}
+                  >
+                    {item.name}
+                  </button>
+                ) : null
+              )}
+              {authStatus && <LogoutBtn />}
+            </nav>
+
+            {/* Search Bar */}
+            {location.pathname === "/all-posts" && (
+              <input
+                type="text"
+                placeholder="Search posts..."
+                value={searchTerm}
+                onChange={(e) => dispatch(setSearchTerm(e.target.value))}
+                className="absolute right-0 px-4 py-2 ml-4 rounded-md border border-gray-300"
+              />
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -90,37 +124,6 @@ function Header() {
               </svg>
             </button>
           </div>
-
-          {/* Desktop Menu */}
-          <nav className="hidden md:flex items-center space-x-4">
-            {navItems.map((item) =>
-              item.active ? (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavigation(item.slug)}
-                  className={`px-3 py-2 rounded-md font-medium transition duration-200 ${
-                    location.pathname === item.slug
-                      ? "text-blue-800 bg-gray-200"
-                      : "text-black hover:bg-gray-200 hover:text-blue-800"
-                  }`}
-                >
-                  {item.name}
-                </button>
-              ) : null
-            )}
-            {authStatus && <LogoutBtn />}
-          </nav>
-
-          {/* Search Bar */}
-          {location.pathname === "/all-posts" && (
-            <input
-              type="text"
-              placeholder="Search posts..."
-              value={searchTerm}
-              onChange={(e) => dispatch(setSearchTerm(e.target.value))}
-              className="hidden md:block px-4 py-2 ml-4 rounded-md border border-gray-300"
-            />
-          )}
         </div>
 
         {/* Mobile Menu */}
