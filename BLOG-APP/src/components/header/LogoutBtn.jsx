@@ -3,10 +3,13 @@ import authService from "../../appwrite/auth";
 import { logout } from "../../store/authSlice";
 import { useState } from "react";
 import { Modal } from "../index";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function LogoutBtn() {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
+  const notify = () => toast.error("Logout Sucessfull !!");
 
   const handleClick = () => {
     setShowModal(true);
@@ -17,10 +20,14 @@ function LogoutBtn() {
   };
 
   const logoutHandler = () => {
-    authService.logout().then(() => {
-      dispatch(logout());
-    });
-    setShowModal(false);
+    try {
+      authService.logout().then(() => {
+        dispatch(logout());
+      });
+      setShowModal(false);
+    } finally {
+      notify();
+    }
   };
 
   const actionBar = (

@@ -49,20 +49,20 @@ function Header() {
   return (
     <header className="bg-gray-200 shadow-md">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center py-4 relative">
           {/* Logo */}
-          <div className="flex items-center">
+          <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
               <Logo width="175px" />
-              <span className="text-black text-2xl font-semibold ml-4">
-                
-              </span>
             </Link>
           </div>
 
-          {/* Center Container for Nav Items and Search Bar */}
-          <div className="flex-grow flex justify-center items-center relative">
-            <nav className="hidden md:flex items-center space-x-4">
+          {/* Center Container for Nav Items */}
+          <div
+            className="flex flex-grow justify-center items-center "
+            style={{ marginRight: "180px" }}
+          >
+            <nav className="flex items-center space-x-4">
               {navItems.map((item) =>
                 item.active ? (
                   <button
@@ -80,21 +80,21 @@ function Header() {
               )}
               {authStatus && <LogoutBtn />}
             </nav>
-
-            {/* Search Bar */}
-            {location.pathname === "/all-posts" && (
-              <input
-                type="text"
-                placeholder="Search posts..."
-                value={searchTerm}
-                onChange={(e) => dispatch(setSearchTerm(e.target.value))}
-                className="absolute right-0 px-4 py-2 ml-4 rounded-md border border-gray-300"
-              />
-            )}
           </div>
 
+          {/* Search Bar */}
+          {location.pathname === "/all-posts" && (
+            <input
+              type="text"
+              placeholder="Search posts..."
+              value={searchTerm}
+              onChange={(e) => dispatch(setSearchTerm(e.target.value))}
+              className="absolute right-0 px-4 py-2 rounded-md border border-gray-300"
+            />
+          )}
+
           {/* Mobile Menu Button */}
-          <div className="flex md:hidden">
+          <div className="flex md:hidden ml-4">
             <button
               className="text-gray-800 focus:outline-none"
               onClick={() => setMenuOpen(!menuOpen)}
