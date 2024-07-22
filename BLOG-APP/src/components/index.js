@@ -13,6 +13,7 @@ import RTE from "./RTE";
 import Select from "./Select";
 import Loader from "./footer/Loader/Loader";
 import RotatingLoader from "./footer/Loader/RotatingLoader.jsx";
+import Modal from "./Modal.jsx";
 
 export {
   Login,
@@ -30,4 +31,5 @@ export {
   Select,
   Loader,
   RotatingLoader,
+  Modal,
 };
