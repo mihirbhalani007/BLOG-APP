@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import authService from "../appwrite/auth";
 import { useForm } from "react-hook-form";
 import { Loader } from "./index";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -13,6 +15,8 @@ function Login() {
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const notify = () => toast.success("Login Sucessfull !!");
 
   const login = async (data) => {
     setError("");
@@ -22,6 +26,7 @@ function Login() {
       if (session) {
         const userData = await authService.getCurrentUser();
         if (userData) dispatch(authLogin(userData));
+        notify();
         navigate("/");
       }
     } catch (error) {
