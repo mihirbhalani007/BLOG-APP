@@ -41,17 +41,13 @@ export class AuthService {
     }
   }
 
-  // async login({ email, password }) {
-  //   try {
-  //     console.log(
-  //       "Available methods on Account instance:",
-  //       Object.getOwnPropertyNames(Object.getPrototypeOf(this.account))
-  //     ); // Debug log
-  //     return await this.account.createEmailSession(email, password);
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // }
+  async updatePassword({ newPassword, oldPassword }) {
+    try {
+      return await this.account.updatePassword(newPassword, oldPassword);
+    } catch (error) {
+      console.log("Appwrite service :: updatePassword :: error", error);
+    }
+  }
 
   async getCurrentUser() {
     try {

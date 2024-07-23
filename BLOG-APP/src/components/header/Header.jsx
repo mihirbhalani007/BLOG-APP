@@ -62,7 +62,7 @@ function Header() {
   return (
     <header className="bg-gray-200 shadow-md">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between py-2">
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center">

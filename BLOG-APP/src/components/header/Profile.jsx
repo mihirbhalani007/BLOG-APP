@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
-import { GoChevronDown } from "react-icons/go";
-import { Panel } from "../index";
+import { GoChevronDown, GoChevronUp } from "react-icons/go";
+import { useSelector } from "react-redux";
 
 function Profile({ options, value, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const divEl = useRef();
+  const userData = useSelector((state) => state.auth.userData);
+  console.log("user data", userData);
 
   useEffect(() => {
     const handler = (event) => {
@@ -48,7 +50,7 @@ function Profile({ options, value, onChange }) {
   return (
     <div ref={divEl} className="relative w-48">
       <div
-        className="flex items-center justify-between p-3 bg-white border rounded shadow cursor-pointer"
+        className="flex items-center justify-between p-3 bg-gray-200 border rounded cursor-pointer"
         onClick={handleClick}
       >
         <div className="flex items-center">
@@ -57,9 +59,15 @@ function Profile({ options, value, onChange }) {
             alt="User Avatar"
             className="w-8 h-8 rounded-full mr-2"
           />
-          <span>{value?.label || "Select..."}</span>
+          <span className="font-semibold text-sm text-red-700">
+            {userData.name || "Select..."}
+          </span>
         </div>
-        <GoChevronDown className="text-lg" />
+        {isOpen ? (
+          <GoChevronUp className="text-lg text-gray-700" />
+        ) : (
+          <GoChevronDown className="text-lg text-gray-700" />
+        )}
       </div>
       {isOpen && (
         <div className="absolute top-full mt-2 w-full border rounded shadow bg-white z-10">
