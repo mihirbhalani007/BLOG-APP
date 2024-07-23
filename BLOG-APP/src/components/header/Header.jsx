@@ -4,11 +4,13 @@ import Logo from "../Logo";
 import LogoutBtn from "./LogoutBtn";
 import { useState } from "react";
 import { setSearchTerm } from "../../store/searchSlice";
+import { Profile } from "../index";
 
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
   const searchTerm = useSelector((state) => state.search.searchTerm);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [selection, setSelection] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -41,9 +43,20 @@ function Header() {
     },
   ];
 
+  const options = [
+    { label: "Update Password", value: "update-password" },
+    { label: "settings", value: "settings" },
+    { label: "bookmarks", value: "bookmarks" },
+  ];
+
   const handleNavigation = (slug) => {
     navigate(slug);
     setMenuOpen(false);
+  };
+
+  const handleSelect = (option) => {
+    navigate(`/${option.value}`);
+    setSelection(option);
   };
 
   return (
@@ -58,23 +71,24 @@ function Header() {
             </Link>
           </div>
 
-          {/* Center Container for Nav Items and Search Bar */}
-          <div className="flex flex-grow justify-center items-center relative">
+          {/* Center Container for Nav Items, Search Bar, and Profile */}
+          <div className="flex items-center justify-center flex-grow space-x-4">
             <nav className="hidden md:flex items-center space-x-4">
-              {navItems.map((item) =>
-                item.active ? (
-                  <button
-                    key={item.name}
-                    onClick={() => handleNavigation(item.slug)}
-                    className={`px-3 py-2 rounded-md font-medium transition duration-200 ${
-                      location.pathname === item.slug
-                        ? "text-blue-800 bg-gray-200"
-                        : "text-black hover:bg-gray-200 hover:text-blue-800"
-                    }`}
-                  >
-                    {item.name}
-                  </button>
-                ) : null
+              {navItems.map(
+                (item) =>
+                  item.active && (
+                    <button
+                      key={item.name}
+                      onClick={() => handleNavigation(item.slug)}
+                      className={`px-3 py-2 rounded-md font-medium transition duration-200 ${
+                        location.pathname === item.slug
+                          ? "text-blue-800 bg-gray-200"
+                          : "text-black hover:bg-gray-200 hover:text-blue-800"
+                      }`}
+                    >
+                      {item.name}
+                    </button>
+                  )
               )}
               {authStatus && <LogoutBtn />}
             </nav>
@@ -86,10 +100,18 @@ function Header() {
                 placeholder="Search posts..."
                 value={searchTerm}
                 onChange={(e) => dispatch(setSearchTerm(e.target.value))}
-                className="absolute right-0 px-4 py-2 ml-4 rounded-md border border-gray-300"
+                className="px-4 py-2 rounded-md border border-gray-300"
               />
             )}
           </div>
+          {/* Profile Dropdown */}
+          {authStatus && (
+            <Profile
+              options={options}
+              value={selection}
+              onChange={handleSelect}
+            />
+          )}
 
           {/* Mobile Menu Button */}
           <div className="flex md:hidden">
@@ -128,20 +150,21 @@ function Header() {
         {menuOpen && (
           <div className="md:hidden py-2 w-full">
             <nav className="flex flex-col items-center space-y-2">
-              {navItems.map((item) =>
-                item.active ? (
-                  <button
-                    key={item.name}
-                    onClick={() => handleNavigation(item.slug)}
-                    className={`px-3 py-2 rounded-md font-medium transition duration-200 ${
-                      location.pathname === item.slug
-                        ? "text-white bg-blue-500 hover:bg-blue-300"
-                        : "text-black bg-gray-200 hover:bg-gray-300 hover:text-blue-800"
-                    }`}
-                  >
-                    {item.name}
-                  </button>
-                ) : null
+              {navItems.map(
+                (item) =>
+                  item.active && (
+                    <button
+                      key={item.name}
+                      onClick={() => handleNavigation(item.slug)}
+                      className={`px-3 py-2 rounded-md font-medium transition duration-200 ${
+                        location.pathname === item.slug
+                          ? "text-white bg-blue-500 hover:bg-blue-300"
+                          : "text-black bg-gray-200 hover:bg-gray-300 hover:text-blue-800"
+                      }`}
+                    >
+                      {item.name}
+                    </button>
+                  )
               )}
               {authStatus && <LogoutBtn />}
               {location.pathname === "/all-posts" && (

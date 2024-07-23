@@ -12,6 +12,7 @@ import EditPost from "./pages/EditPost";
 import Post from "./pages/Post";
 import AllPosts from "./pages/AllPosts";
 import SignUp from "./components/SignUp.jsx";
+import UpdatePassword from "./pages/UpdatePassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
       {
         path: "/post/:slug",
         element: <Post />,
+      },
+      {
+        path: "/update-password",
+        element: <UpdatePassword />,
       },
     ],
   },
