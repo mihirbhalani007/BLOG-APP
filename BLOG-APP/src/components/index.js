@@ -11,8 +11,8 @@ import LogoutBtn from "./header/LogoutBtn";
 import Input from "./Input";
 import RTE from "./RTE";
 import Select from "./Select";
-import Loader from "./footer/Loader/Loader";
-import RotatingLoader from "./footer/Loader/RotatingLoader.jsx";
+import Loader from "./Loader/Loader.jsx";
+import RotatingLoader from "./Loader/RotatingLoader.jsx";
 import Modal from "./Modal.jsx";
 
 export {

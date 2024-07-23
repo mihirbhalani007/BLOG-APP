@@ -4,26 +4,30 @@ import appwriteService from "../appwrite/config";
 import { Button, Container } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
+import { RotatingLoader } from "../components";
 
 export default function Post() {
   const [post, setPost] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const { slug } = useParams();
   const navigate = useNavigate();
-
   const userData = useSelector((state) => state.auth.userData);
 
-  const isAuthor = post && userData ? post.userId === userData.$id : false;
-
   useEffect(() => {
+    setIsLoading(true);
     if (slug) {
-      appwriteService.getPost(slug).then((post) => {
-        if (post) setPost(post);
-        else navigate("/");
+      appwriteService.getPost(slug).then((fetchedPost) => {
+        if (fetchedPost) {
+          setPost(fetchedPost);
+          setIsLoading(false);
+        } else {
+          navigate("/");
+        }
       });
-    } else navigate("/");
-  }, [slug, navigate, userData]);
-
-
+    } else {
+      navigate("/");
+    }
+  }, [slug, navigate]);
 
   const deletePost = () => {
     appwriteService.deletePost(post.$id).then((status) => {
@@ -34,6 +38,15 @@ export default function Post() {
     });
   };
 
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[480px]">
+        <RotatingLoader />
+      </div>
+    );
+  }
+
+  const isAuthor = post && userData ? post.userId === userData.$id : false;
   return post ? (
     <div className="py-8">
       <Container>
