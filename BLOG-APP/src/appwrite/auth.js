@@ -10,7 +10,7 @@ export class AuthService {
       .setEndpoint(conf.appwriteUrl)
       .setProject(conf.appwriteProjectId);
     this.account = new Account(this.client);
-    console.log("Account instance:", this.account); // Debug log
+    // console.log("Account instance:", this.account);
   }
 
   async createAccount({ email, password, name }) {
@@ -41,13 +41,24 @@ export class AuthService {
     }
   }
 
-  async updatePassword({ newPassword, oldPassword }) {
+  updatePassword = async (newPassword, oldPassword = "") => {
     try {
-      return await this.account.updatePassword(newPassword, oldPassword);
+      // Client-side validation for password length
+      if (newPassword.length < 8 || newPassword.length > 265) {
+        throw new Error("Password must be between 8 and 265 characters long.");
+      }
+
+      const response = await this.account.updatePassword(
+        newPassword,
+        oldPassword
+      );
+      console.log("Password updated successfully", response);
+      return response; // Optionally return response if needed
     } catch (error) {
-      console.log("Appwrite service :: updatePassword :: error", error);
+      console.error("Error updating password:", error);
+      throw error; // Re-throw error for handling in calling code
     }
-  }
+  };
 
   async getCurrentUser() {
     try {

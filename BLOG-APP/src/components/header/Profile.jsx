@@ -8,7 +8,7 @@ function Profile({ options, value, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const divEl = useRef();
   const userData = useSelector((state) => state.auth.userData);
-  console.log("user data", userData);
+  // console.log("user data", userData);
 
   useEffect(() => {
     const handler = (event) => {
@@ -16,7 +16,7 @@ function Profile({ options, value, onChange }) {
         return;
       }
       if (!divEl.current.contains(event.target)) {
-        setIsopen(false);
+        // setIsopen(false);
       }
     };
 
@@ -60,7 +60,7 @@ function Profile({ options, value, onChange }) {
             className="w-8 h-8 rounded-full mr-2"
           />
           <span className="font-semibold text-sm text-red-700">
-            {userData.name || "Select..."}
+            {userData?.name}
           </span>
         </div>
         {isOpen ? (
