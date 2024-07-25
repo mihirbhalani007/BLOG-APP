@@ -30,7 +30,7 @@ function AllPosts() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-[480px]">
+      <div className="flex items-center justify-center min-h-[480px] py-8">
         <div className="flex flex-col items-center justify-center">
           <p className="text-xl font-medium text-gray-700 mb-8">
             Loading Posts for you, Please wait
@@ -42,7 +42,7 @@ function AllPosts() {
   }
 
   return (
-    <div className="w-full py-8">
+    <div className="w-full py-8 min-h-[480px] ">
       <Container>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredPosts.map((post) => (
