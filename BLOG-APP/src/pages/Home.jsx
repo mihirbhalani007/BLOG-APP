@@ -7,13 +7,14 @@ import { RotatingLoader } from "../components";
 
 function Home() {
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const authStatus = useSelector((state) => state.auth.status);
-
   useEffect(() => {
     if (authStatus) {
       appwriteService.getPosts().then((response) => {
         if (response) {
           setPosts(response.documents);
+          setIsLoading(false);
         }
       });
     }
@@ -43,7 +44,7 @@ function Home() {
     );
   }
 
-  if (posts.length === 0) {
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[480px] py-8">
         <div className="flex flex-col items-center justify-center">
@@ -51,6 +52,18 @@ function Home() {
             Loading Posts for you, Please wait
           </p>
           <RotatingLoader />
+        </div>
+      </div>
+    );
+  }
+
+  if (posts == 0) {
+    return (
+      <div className="flex items-center justify-center min-h-[480px] py-8">
+        <div className="flex flex-col items-center justify-center">
+          <p className="text-xl font-medium text-gray-700 mb-8">
+            No Posts available, Please Create new post.
+          </p>
         </div>
       </div>
     );
