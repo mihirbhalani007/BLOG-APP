@@ -64,8 +64,8 @@ function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-2">
           {/* Logo */}
-          <div className="flex items-center">
-            <Link to="/" className="flex items-center">
+          <div className="flex items-center absolute">
+            <Link to="/" className="flex items-center ">
               <Logo width="175px" />
               <span className="text-black text-2xl font-semibold ml-4"></span>
             </Link>
@@ -106,11 +106,13 @@ function Header() {
           </div>
           {/* Profile Dropdown */}
           {authStatus && (
-            <Profile
-              options={options}
-              value={selection}
-              onChange={handleSelect}
-            />
+            <div className="">
+              <Profile
+                options={options}
+                value={selection}
+                onChange={handleSelect}
+              />
+            </div>
           )}
 
           {/* Mobile Menu Button */}

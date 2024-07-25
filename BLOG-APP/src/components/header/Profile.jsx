@@ -1,22 +1,16 @@
-import { useEffect } from "react";
-import { useRef } from "react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GoChevronDown, GoChevronUp } from "react-icons/go";
 import { useSelector } from "react-redux";
 
 function Profile({ options, value, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
-  const divEl = useRef();
   const userData = useSelector((state) => state.auth.userData);
-  // console.log("user data", userData);
+  const divEl = useRef();
 
   useEffect(() => {
     const handler = (event) => {
-      if (!divEl.current) {
-        return;
-      }
-      if (!divEl.current.contains(event.target)) {
-        // setIsopen(false);
+      if (divEl.current && !divEl.current.contains(event.target)) {
+        setIsOpen(false);
       }
     };
 
@@ -35,18 +29,17 @@ function Profile({ options, value, onChange }) {
     onChange(option);
   };
 
-  const renderedOptions = options.map((option) => {
-    return (
-      <div
-        className="hover:bg-sky-100 rounded cursor-pointer p-1"
-        onClick={() => handleOptionClick(option)}
-        key={option.value}
-      >
-        {option.label}
-      </div>
-    );
-  });
+  const renderedOptions = options.map((option) => (
+    <div
+      className="hover:bg-sky-100 rounded cursor-pointer p-1"
+      onClick={() => handleOptionClick(option)}
+      key={option.value}
+    >
+      {option.label}
+    </div>
+  ));
 
+  // Once userData is loaded, render the profile
   return (
     <div ref={divEl} className="relative w-48">
       <div
@@ -60,7 +53,7 @@ function Profile({ options, value, onChange }) {
             className="w-8 h-8 rounded-full mr-2"
           />
           <span className="font-semibold text-sm text-red-700">
-            {userData?.name}
+            {userData?.name || "User Profile"}
           </span>
         </div>
         {isOpen ? (

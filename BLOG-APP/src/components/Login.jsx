@@ -25,13 +25,13 @@ function Login() {
       const session = await authService.login(data);
       if (session) {
         const userData = await authService.getCurrentUser();
-        if (userData) dispatch(authLogin(userData));
+        if (userData) dispatch(authLogin({ userData }));
         notify();
         navigate("/");
       }
     } catch (error) {
       setError(error.message);
-      console.log("login full error ", error);
+      console.log("login full error", error);
     } finally {
       setIsLoading(false);
     }

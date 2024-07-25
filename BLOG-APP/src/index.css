@@ -6,3 +6,8 @@ body {
   font-family: "Raleway";
 }
 
+/* In your global stylesheet */
+
+body.no-scroll {
+  overflow: hidden;
+}
