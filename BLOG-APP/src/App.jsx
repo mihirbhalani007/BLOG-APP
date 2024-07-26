@@ -8,6 +8,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import useDisableScrollbarOnNavigation from "./noScrollBar";
 import { Loader } from "./components/index";
+import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -55,6 +57,8 @@ function App() {
         pauseOnHover
         theme="colored"
       />
+      <SpeedInsights />
+      <Analytics />
       <Header />
       <main className="flex-1">
         <Outlet />
@@ -65,5 +69,3 @@ function App() {
 }
 
 export default App;
-
-
