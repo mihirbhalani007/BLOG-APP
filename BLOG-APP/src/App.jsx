@@ -6,13 +6,13 @@ import { Footer, Header } from "./components";
 import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useDisableScrollbarOnNavigation from "./noScrollBar";
+// import useDisableScrollbarOnNavigation from "./noScrollBar";
 import { Loader } from "./components/index";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  useDisableScrollbarOnNavigation();
+  // useDisableScrollbarOnNavigation();
 
   useEffect(() => {
     authService
@@ -65,3 +65,5 @@ function App() {
 }
 
 export default App;
+
+
