@@ -14,6 +14,8 @@ import Select from "./Select";
 import Loader from "./Loader/Loader.jsx";
 import RotatingLoader from "./Loader/RotatingLoader.jsx";
 import Modal from "./Modal.jsx";
+import Profile from "./header/Profile.jsx";
+import Panel from "./header/Panel.jsx";
 
 export {
   Login,
@@ -32,4 +34,6 @@ export {
   Loader,
   RotatingLoader,
   Modal,
+  Profile,
+  Panel,
 };

@@ -7,13 +7,14 @@ import { RotatingLoader } from "../components";
 
 function Home() {
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const authStatus = useSelector((state) => state.auth.status);
-
   useEffect(() => {
     if (authStatus) {
       appwriteService.getPosts().then((response) => {
         if (response) {
           setPosts(response.documents);
+          setIsLoading(false);
         }
       });
     }
@@ -43,23 +44,33 @@ function Home() {
     );
   }
 
-  if (posts.length === 0) {
+  if (isLoading) {
     return (
-      <div className="w-full bg-white text-center">
-        <Container>
-          <div className="flex flex-col items-center justify-center min-h-[480px]">
-            <p className="text-xl font-medium text-gray-700 mb-8">
-              Loading Posts for you, Please wait
-            </p>
-            <RotatingLoader />
-          </div>
-        </Container>
+      <div className="flex items-center justify-center min-h-[480px] py-8">
+        <div className="flex flex-col items-center justify-center">
+          <p className="text-xl font-medium text-gray-700 mb-8">
+            Loading Posts for you, Please wait
+          </p>
+          <RotatingLoader />
+        </div>
+      </div>
+    );
+  }
+
+  if (posts == 0) {
+    return (
+      <div className="flex items-center justify-center min-h-[480px] py-8">
+        <div className="flex flex-col items-center justify-center">
+          <p className="text-xl font-medium text-gray-700 mb-8">
+            No Posts available, Please Create new post.
+          </p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="w-full py-8">
+    <div className="w-full py-8 min-h-[480px]">
       <Container>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {posts.map((post) => (

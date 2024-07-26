@@ -5,10 +5,12 @@ import { useState } from "react";
 import { Modal } from "../index";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 function LogoutBtn() {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const notify = () => toast.error("Logout Sucessfull !!");
 
   const handleClick = () => {
@@ -17,6 +19,11 @@ function LogoutBtn() {
 
   const handleClose = () => {
     setShowModal(false);
+  };
+
+  const handleCancelClick = () => {
+    navigate("");
+    handleClose();
   };
 
   const logoutHandler = () => {
@@ -31,12 +38,18 @@ function LogoutBtn() {
   };
 
   const actionBar = (
-    <div>
+    <div className="">
       <button
         onClick={logoutHandler}
-        className="bg-red-500 text-white hover:bg-red-700 transition duration-300 ease-in-out py-2 px-4 rounded shadow-lg"
+        className="bg-red-500 text-white hover:bg-red-700 transition duration-300 ease-in-out py-2 px-4 rounded shadow-lg m-2"
       >
         Logout
+      </button>
+      <button
+        onClick={handleCancelClick}
+        className="bg-yellow-500 text-black hover:bg-yellow-700 transition duration-300 ease-in-out py-2 px-4 rounded shadow-lg"
+      >
+        Cancel
       </button>
     </div>
   );
@@ -50,7 +63,7 @@ function LogoutBtn() {
   return (
     <div>
       <button
-        className="inline-block px-6 py-2 duration-200 text-black font-medium hover:bg-red-500 hover:text-white rounded-full"
+        className="inline-block px-6 py-2 duration-200 text-blue-800 font-medium hover:bg-red-500 hover:text-white rounded-full"
         onClick={handleClick}
       >
         Logout
